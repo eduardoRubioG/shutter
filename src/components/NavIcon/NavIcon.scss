@@ -1,0 +1,68 @@
+@use "../../styles/colors" as c; 
+.nav-icon {
+  width: 70px;
+  height: 70px;
+  background-color: none;
+  margin-left: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 9999;
+
+  & span {
+    width: 30px;
+    height: 2px;
+    border-radius: 6px;
+    background-color: c.$ss-white;
+    content: "";
+    display: block;
+    bottom: 0;
+    margin-top: 0;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  & span + span {
+    margin-top: 7px;
+  }
+
+  & span:nth-child(1) {
+    transform-origin: right center;
+    transform: scaleX(0.7);
+  }
+
+  & span:nth-child(2) {
+    transform-origin: left center;
+    transform: scaleX(1);
+  }
+
+  & span:nth-child(3) {
+    transform-origin: left center;
+    transform: scaleX(0.7);
+  }
+
+  &:hover span {
+    transform: scaleY(1);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  &.nav-active span:nth-child(1) {
+    margin-bottom: 7px;
+    transform-origin: top left;
+    transform: rotate(-45deg) scaleX(0.5) translateY(12px) translatex(-23px);
+  }
+
+  &.nav-active span:nth-child(2) {
+    margin-bottom: 7px;
+    transform-origin: center;
+    transform: scaleY(1);
+  }
+
+  &.nav-active span:nth-child(3) {
+    margin-bottom: 7px;
+    transform-origin: top right;
+    transform: rotate(45deg) scaleX(0.5) translateY(9px) translatex(-32px);
+  }
+}

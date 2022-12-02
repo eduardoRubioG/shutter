@@ -1,0 +1,147 @@
+@use "../../styles/media-queries" as m;
+@use "../../styles/colors" as c; 
+.nav {
+  position: absolute;
+  height: 70px;
+  width: 100%;
+
+  z-index: 999;
+
+  background-color: none;
+
+  &__content {
+    z-index: -1;
+
+    padding: 0;
+    margin: 0;
+    background-color: c.$ss-black;
+    height: 100vh;
+    width: 100%;
+    max-width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    transition: transform 300ms ease-out;
+    transform: scaleY(0);
+    transform-origin: top;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+
+    padding: 3rem;
+    padding-bottom: 4rem;
+
+    &[data-active-index="0"] > .nav__pattern {
+      background-position: 0% -25%;
+    }
+
+    &[data-active-index="1"] > .nav__pattern {
+      background-position: 0% -50%;
+    }
+
+    &[data-active-index="2"] > .nav__pattern {
+      background-position: 0% -75%;
+    }
+
+    &[data-active-index="3"] > .nav__pattern {
+      background-position: 0% -100%;
+    }
+
+    @include m.md {
+      justify-content: center;
+    }
+
+    &.nav-open {
+      transform: scaleY(1);
+      & li {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__link {
+    list-style: none;
+    font-size: 2.75rem;
+    margin: 0.66rem 0rem;
+    position: relative;
+    opacity: 0;
+
+    transition: opacity 250ms ease-in;
+    transition-delay: 300ms;
+
+    &:hover ~ .nav__pattern {
+      background-size: 6vmin 6vmin;
+      opacity: 0.5;
+    }
+
+    @include m.md {
+      margin: 0.66rem 1rem;
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+
+      height: 3px;
+      border-radius: 100px;
+      width: 100%;
+      background-color: c.$ss-white;
+
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.1s ease-in;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:hover:before {
+      transform: scaleX(1);
+    }
+
+    & a {
+      color: c.$ss-white;
+    }
+  }
+
+  &__pattern {
+    background-image: url("../../../static/images/cross.svg");
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40%;
+    background-position: 0% 0%;
+    background-size: 7vmin 7vmin;
+    height: 100vh;
+    position: absolute;
+    transition: opacity 800ms ease, background-size 800ms ease,
+      background-position 800ms ease;
+    display: none;
+
+    @include m.md {
+      display: block;
+    }
+  }
+
+  &__color-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 35px;
+
+    background: linear-gradient(
+      270deg,
+      #1a1919 7.22%,
+      #dc4a44 35.68%,
+      #db7037 86.26%
+    );
+  }
+}
