@@ -1,68 +1,48 @@
 @use "../../styles/colors" as c; 
 .nav-icon {
-  width: 70px;
-  height: 70px;
+  $size: 50px; 
+  width: $size;
+  height: $size;
   background-color: none;
+  margin: 0 2rem;
   margin-left: auto;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 
   z-index: 9999;
 
-  & span {
-    width: 30px;
-    height: 2px;
-    border-radius: 6px;
-    background-color: c.$ss-white;
-    content: "";
-    display: block;
-    bottom: 0;
-    margin-top: 0;
-    transition: transform 0.2s ease-in-out;
-  }
+  &__line{
+		height: 2px;
+		width: $size;
+		display: block;
+		background-color: c.$ss-white;
+		margin-bottom: 4px;
+		transition: transform .2s ease;
+	}
 
-  & span + span {
-    margin-top: 7px;
-  }
-
-  & span:nth-child(1) {
-    transform-origin: right center;
-    transform: scaleX(0.7);
-  }
-
-  & span:nth-child(2) {
-    transform-origin: left center;
-    transform: scaleX(1);
-  }
-
-  & span:nth-child(3) {
-    transform-origin: left center;
-    transform: scaleX(0.7);
-  }
+  &__line.left{
+		width: $size / 2;
+	}
+	&__line.right{
+		width: $size / 2;
+		float: right;
+	}
 
   &:hover span {
-    transform: scaleY(1);
-    transition: transform 0.2s ease-in-out;
+    &.left {
+      transform: translateX(50%);
+    }
+    &.right {
+      transform: translateX(-50%);
+    }
   }
 
-  &.nav-active span:nth-child(1) {
-    margin-bottom: 7px;
-    transform-origin: top left;
-    transform: rotate(-45deg) scaleX(0.5) translateY(12px) translatex(-23px);
-  }
-
-  &.nav-active span:nth-child(2) {
-    margin-bottom: 7px;
-    transform-origin: center;
-    transform: scaleY(1);
-  }
-
-  &.nav-active span:nth-child(3) {
-    margin-bottom: 7px;
-    transform-origin: top right;
-    transform: rotate(45deg) scaleX(0.5) translateY(9px) translatex(-32px);
+  &.nav-active{
+    .nav-icon{
+      &__line.left{
+        transform: translateX(100%);
+      }
+      &__line.right{
+        transform: translateX(-100%);
+      }
+    }
   }
 }

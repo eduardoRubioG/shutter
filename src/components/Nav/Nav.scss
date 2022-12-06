@@ -1,12 +1,14 @@
 @use "../../styles/media-queries" as m;
 @use "../../styles/colors" as c; 
+
 .nav {
-  position: absolute;
-  height: 70px;
-  width: 100%;
-
+  $width: 100vw;
+	$height: 100vh;
+  width: $width;
+  position: fixed;
+  display: flex;
+  justify-content: flex-end;
   z-index: 999;
-
   background-color: none;
 
   &__content {
@@ -23,7 +25,7 @@
     left: 0;
 
     transition: transform 300ms ease-out;
-    transform: scaleY(0);
+    transform: translateY(-100%);
     transform-origin: top;
 
     display: flex;
@@ -55,7 +57,7 @@
     }
 
     &.nav-open {
-      transform: scaleY(1);
+      transform: translateY(0);
       & li {
         opacity: 1;
       }
@@ -102,7 +104,7 @@
     }
 
     &:hover:before {
-      transform: scaleX(1);
+      transform: scaleX(.3);
     }
 
     & a {

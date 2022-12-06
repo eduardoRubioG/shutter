@@ -8,20 +8,20 @@ import { useEffect } from "react";
 const navLinks = [
   {
     text: "Home",
-    url: "/"
+    url: "/",
   },
   {
     text: "The Story",
-    url: "/"
+    url: "/",
   },
   {
     text: "Portfolio",
-    url: "/"
+    url: "/",
   },
   {
     text: "Contact Us",
-    url: "/"
-  }
+    url: "/",
+  },
 ];
 
 const Nav = () => {
@@ -30,27 +30,31 @@ const Nav = () => {
   useEffect(() => {
     const menu = document.getElementById("nav-menu");
 
-    Array.from(document.getElementsByClassName("nav__link")).forEach((item, index) => {
-      (item as HTMLElement).onmouseover = () => {
-        menu.dataset.activeIndex = index;
-      };
-    });
+    Array.from(document.getElementsByClassName("nav__link")).forEach(
+      (item, index) => {
+        (item as HTMLElement).onmouseover = () => {
+          menu.dataset.activeIndex = index;
+        };
+      }
+    );
   }, []);
 
   return (
     <nav className="nav">
       <NavIcon isOpen={isOpen} navCallback={setNavIsOpen} />
-      <ul id="nav-menu" className={`nav__content ${isOpen ? "nav-open" : ""}`}>
-        {navLinks.map((link, index) => {
-          return (
-            <li key={index} className="nav__link">
-              <a href={link.url}>{link.text}</a>
-            </li>
-          );
-        })}
+      <div id="nav-menu" className={`nav__content ${isOpen ? "nav-open" : ""}`}>
+        <ul className="nav__list">
+          {navLinks.map((link, index) => {
+            return (
+              <li key={index} className="nav__link">
+                <a href={link.url}>{link.text}</a>
+              </li>
+            );
+          })}
+        </ul>
         <div className="nav__pattern"></div>
         <div className="nav__color-bar"></div>
-      </ul>
+      </div>
     </nav>
   );
 };
