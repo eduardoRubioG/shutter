@@ -64,6 +64,13 @@
     }
   }
 
+  &__list {
+    &:hover ~ .nav__pattern {
+      background-size: 6vmin 6vmin;
+      opacity: 0.5;
+    }
+  }
+
   &__link {
     list-style: none;
     font-size: 2.75rem;
@@ -73,11 +80,6 @@
 
     transition: opacity 250ms ease-in;
     transition-delay: 300ms;
-
-    &:hover ~ .nav__pattern {
-      background-size: 6vmin 6vmin;
-      opacity: 0.5;
-    }
 
     @include m.md {
       margin: 0.66rem 1rem;

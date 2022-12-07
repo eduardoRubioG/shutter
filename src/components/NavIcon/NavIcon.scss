@@ -19,10 +19,10 @@
 	}
 
   &__line.left{
-		width: $size / 2;
+		width: calc($size / 2);
 	}
 	&__line.right{
-		width: $size / 2;
+		width: calc($size / 2);
 		float: right;
 	}
 
