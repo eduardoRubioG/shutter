@@ -1,14 +1,16 @@
 // @ts-nocheck
 import React from "react";
 
-import { Clone, Float, TransformControls, useGLTF } from "@react-three/drei";
+import { Clone, Float, useGLTF } from "@react-three/drei";
 import ChromeSphere from "../ChromeSphere/ChromeSphere";
+import Effects from "../Effect/Effect";
 
 const SplashCanvas = () => {
   const model = useGLTF("/models/sand.glb");
 
   return (
     <>
+      <Effects />
       <directionalLight intensity={10.0} position={[0, 0, 5]} color="blue" />
       <hemisphereLight intensity={0.03} />
       <rectAreaLight color={"white"} intensity={20} />
@@ -24,10 +26,8 @@ const SplashCanvas = () => {
         <ChromeSphere position={[8.5, 4.7, 0.5]} />
       </Float>
 
-      <Clone object={model.scene} position-x={0} />
-      <TransformControls mode="translate">
-        <Clone object={model.scene} position-x={-21.75} />
-      </TransformControls>
+      <primitive object={model.scene} position-x={0} />
+        {/* <Clone object={model.scene} position-x={-21.75} /> */}
     </>
   );
 };
