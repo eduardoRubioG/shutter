@@ -18,7 +18,6 @@ const SplashCanvasWrapper = () => {
       >
         <color attach="background" args={["#101115"]} />
         <fog attach="fog" color="black" near={.1} far={250} />
-        <OrbitControls makeDefault />
 
         <SplashCanvas />
 
