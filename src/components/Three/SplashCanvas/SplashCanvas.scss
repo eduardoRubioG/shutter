@@ -1,0 +1,65 @@
+@use "../../../styles/colors" as c; 
+
+$fade-in-length: 700ms; 
+.is-visible {
+  opacity: 1 !important;
+}
+
+.scroll-composition {
+  &__hero {
+    height: 100vh;
+    width: 100%;
+    transition: opacity $fade-in-length ease;
+    opacity: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    padding: 3rem;
+}
+
+  &__hero-content {
+    font-size: 5vw;
+    width: 25%;
+    color: c.$ss-white;
+  }
+
+  &__hero-title {
+    max-width: 100%;
+  }
+
+  &__hero-sub {
+    color: c.$ss-white;
+    font-size: 24px;
+  }
+
+  &__about {
+    height: 100vh;
+    width: 100%;
+    transition: opacity $fade-in-length ease;
+    opacity: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    padding: 3rem;
+    color: c.$ss-white;
+    & > h2 {
+        font-size: 128px;
+        max-width: 50%;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+    & > p {
+        font-size: 24px;
+        max-width: 50%;
+        width: 100%;
+        margin-left: 6rem;
+
+    }
+  }
+}
