@@ -1,4 +1,5 @@
 @use "../../../styles/colors" as c; 
+@use "../../../styles/media-queries" as m; 
 
 $fade-in-length: 700ms; 
 .is-visible {
@@ -17,13 +18,22 @@ $fade-in-length: 700ms;
     justify-content: flex-end;
     align-items: flex-end;
 
-    padding: 3rem;
+    padding: 1rem;
+    @include m.lg {
+      padding: 3rem;
+    }
 }
 
   &__hero-content {
-    font-size: 5vw;
-    width: 25%;
+    font-size: 18px;
+    width: 100%;
+    max-width: 400px;
     color: c.$ss-white;
+    @include m.lg {
+      font-size: 5vw;
+      width: 100%;
+      max-width: 33%;
+    }
   }
 
   &__hero-title {
@@ -32,7 +42,10 @@ $fade-in-length: 700ms;
 
   &__hero-sub {
     color: c.$ss-white;
-    font-size: 24px;
+    font-size: 18px;
+    @include m.lg {
+      font-size: 24px;
+    }
   }
 
   &__about {
@@ -46,19 +59,31 @@ $fade-in-length: 700ms;
     justify-content: flex-start;
     align-items: flex-start;
 
-    padding: 3rem;
+    padding: 1rem;
+    @include m.lg {
+      padding: 3rem;
+    }
     color: c.$ss-white;
     & > h2 {
-        font-size: 128px;
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 2rem;
+      font-size: 68px;
+      @include m.lg {
         max-width: 50%;
-        width: 100%;
-        margin-bottom: 2rem;
+        font-size: 128px;
+      }
     }
     & > p {
+      width: 100%;
+      font-size: 18px;
+      max-width: 85%;
+      margin-left: 2rem;
+      @include m.lg {
+        margin-left: 6rem;
         font-size: 24px;
         max-width: 50%;
-        width: 100%;
-        margin-left: 6rem;
+      }
 
     }
   }
