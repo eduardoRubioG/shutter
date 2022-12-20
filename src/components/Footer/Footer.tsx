@@ -2,9 +2,15 @@ import React from "react";
 import { Link } from "gatsby";
 import "./Footer.scss";
 
-const Footer = () => {
+export interface FooterProps {
+  wrapperClassname?: string; 
+  wrapperInlineStyles?: React.CSSProperties; 
+}
+
+const Footer = (props: FooterProps) => {
+  const { wrapperClassname, wrapperInlineStyles } = props; 
   return (
-    <footer className="footer">
+    <footer className={`footer ${wrapperClassname || ''}`} style={wrapperInlineStyles}>
       <div className="footer__contents-wrapper">
         <div className="footer__links-wrapper">
           <Link to="/" className="footer__link">

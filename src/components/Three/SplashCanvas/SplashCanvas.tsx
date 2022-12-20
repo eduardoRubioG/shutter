@@ -11,6 +11,7 @@ import {
 import ChromeSphere from "../ChromeSphere/ChromeSphere";
 import Effects from "../Effect/Effect";
 import { useFrame } from "@react-three/fiber";
+import Footer from "../../Footer/Footer";
 
 const rsqw = (t: number, delta = 0.1, a = 1, f = 1 / (2 * Math.PI)) =>
   (a / Math.atan(1 / delta)) * Math.atan(Math.sin(2 * Math.PI * t * f) / delta);
@@ -77,6 +78,7 @@ const ScrollComposition = () => {
             greatest story of all.{" "}
           </p>
         </section>
+        <Footer wrapperInlineStyles={{ position: 'absolute', width: '100%', bottom: '0' }}/>
       </Scroll>
     </>
   );
