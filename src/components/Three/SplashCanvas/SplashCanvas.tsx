@@ -2,28 +2,30 @@ import React, { useRef } from "react";
 
 import "./SplashCanvas.scss";
 
-import {
-  useGLTF,
-  Scroll,
-  ScrollControls,
-  useScroll,
-} from "@react-three/drei";
+import { useGLTF, Scroll, ScrollControls, useScroll } from "@react-three/drei";
 import ChromeSphere from "../ChromeSphere/ChromeSphere";
 import Effects from "../Effect/Effect";
 import { useFrame } from "@react-three/fiber";
 import Footer from "../../Footer/Footer";
+import ContactForm from "../../ContactForm/ContactForm";
+import ContactSection from "../../ContactSection/ContactSection";
 
 const rsqw = (t: number, delta = 0.1, a = 1, f = 1 / (2 * Math.PI)) =>
   (a / Math.atan(1 / delta)) * Math.atan(Math.sin(2 * Math.PI * t * f) / delta);
 
-const ScrollComposition = () => {
+export interface ScrollCompositionProps {
+  scrollPageCount: number; 
+}
+
+const ScrollComposition = (props: ScrollCompositionProps) => {
   const scroll = useScroll();
-  const scrollPageCount = 2;
+  const {scrollPageCount} = props;
 
   const model = useGLTF("/models/sand.glb");
 
   const heroSectionRef = useRef<HTMLDivElement | null>(null);
   const aboutSectionRef = useRef<HTMLDivElement | null>(null);
+  const contactSectionRef = useRef<HTMLDivElement | null>(null);
   const sceneRef = useRef<any | null>(null);
 
   useFrame((state, delta) => {
@@ -34,9 +36,12 @@ const ScrollComposition = () => {
         1 / scrollPageCount,
         1 / scrollPageCount
       ); // from second page, for a page
+      const contactSectionShouldBeVisible = scroll.visible(
+        2 / scrollPageCount,
+        1 / scrollPageCount
+      );
 
-      sceneRef.current.rotation.y =
-        Math.PI - (Math.PI / 2) * rsqw(r1) * 1.0;
+      sceneRef.current.rotation.y = Math.PI - (Math.PI / 2) * rsqw(r1) * 1.0;
 
       heroSectionRef?.current?.classList.toggle(
         "is-visible",
@@ -46,12 +51,16 @@ const ScrollComposition = () => {
         "is-visible",
         aboutContentsShouldBeVisible
       );
+      contactSectionRef?.current?.classList.toggle(
+        "is-visible",
+        contactSectionShouldBeVisible
+      );
     }
   });
 
   return (
     <>
-      <primitive ref={sceneRef} object={model.scene} position-x={0} rotat />
+      <primitive ref={sceneRef} object={model.scene} position-x={0} />
       <Scroll html style={{ width: "100%" }}>
         {/* HERO ABOVE THE FOLD SECTION */}
         <section ref={heroSectionRef} className="scroll-composition__hero">
@@ -78,22 +87,33 @@ const ScrollComposition = () => {
             greatest story of all.{" "}
           </p>
         </section>
-        <Footer wrapperInlineStyles={{ position: 'absolute', width: '100%', bottom: '0' }}/>
+
+        {/* CONTACT SECTION */}
+        <ContactSection sectionRef={contactSectionRef} wrapperClassName="scroll-composition__contact"/>
+
+        <Footer
+          wrapperInlineStyles={{
+            position: "absolute",
+            width: "100%",
+            bottom: "0",
+          }}
+        />
       </Scroll>
     </>
   );
 };
 
 const SplashCanvas = () => {
+  const scrollPageCount = 3; 
   return (
     <>
       <Effects />
-      <ScrollControls damping={6} pages={2}>
+      <ScrollControls damping={6} pages={scrollPageCount}>
         <directionalLight intensity={10.0} position={[0, 0, 5]} color="blue" />
         <hemisphereLight intensity={0.03} />
         <rectAreaLight color={"white"} intensity={20} />
 
-        <ScrollComposition />
+        <ScrollComposition scrollPageCount={scrollPageCount}/>
         <ChromeSphere position={[8.5, 4.7, 0.5]} />
       </ScrollControls>
     </>

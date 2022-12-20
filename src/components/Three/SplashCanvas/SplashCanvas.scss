@@ -8,7 +8,7 @@ $fade-in-length: 700ms;
 
 .scroll-composition {
   &__hero {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     transition: opacity $fade-in-length ease;
     opacity: 0;
@@ -48,8 +48,15 @@ $fade-in-length: 700ms;
     }
   }
 
+  &__contact {
+    min-height: 100vh;
+    width: 100%;
+    transition: opacity $fade-in-length ease;
+    opacity: 0;
+  }
+  
   &__about {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     transition: opacity $fade-in-length ease;
     opacity: 0;
