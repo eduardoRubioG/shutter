@@ -6,7 +6,7 @@ import Effects from "../Effect/Effect";
 import ScrollComposition from "../ScrollComposition/ScrollComposition";
 
 const SplashCanvas = () => {
-  const scrollPageCount = 3; 
+  const scrollPageCount = 4;
   return (
     <>
       <Effects />
@@ -15,7 +15,7 @@ const SplashCanvas = () => {
         <hemisphereLight intensity={0.03} />
         <rectAreaLight color={"white"} intensity={20} />
 
-        <ScrollComposition scrollPageCount={scrollPageCount}/>
+        <ScrollComposition scrollPageCount={scrollPageCount} />
         <ChromeSphere position={[8.5, 4.7, 0.5]} />
       </ScrollControls>
     </>

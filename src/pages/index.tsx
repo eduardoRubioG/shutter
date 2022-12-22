@@ -20,7 +20,9 @@ const App = (props: AppProps) => {
   return (
     <main>
       <Nav />
-      <FeatureVideoContext.Provider value={props.data.contentfulProject.projectName}>
+      <FeatureVideoContext.Provider
+        value={props.data.contentfulProject.videoUrl}
+      >
         <SplashCanvasWrapper />
       </FeatureVideoContext.Provider>
 
