@@ -108,7 +108,7 @@ const ContactForm = (props: ContactFormProps) => {
         data-netlify="true"
         onSubmit={handleSubmit}
       >
-        <input type="hidden" name={formId} value={formName}></input>
+        <input type="hidden" name="form-name" value={formName}></input>
 
         <div className="contact-form__input-wrapper">
           <label>Name:</label>
