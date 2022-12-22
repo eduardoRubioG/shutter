@@ -6,13 +6,14 @@ import ContactSection from "../../ContactSection/ContactSection";
 import Footer from "../../Footer/Footer";
 import "./ScrollComposition.scss";
 import { FeatureVideoContext } from "../../AppContext/AppContext";
+import FeatureSection from "../../FeatureVideoSection/FeatureSection";
 
 export interface ScrollCompositionProps {
   scrollPageCount: number;
 }
 const ScrollComposition = (props: ScrollCompositionProps) => {
   const featureVideoUrl = useContext(FeatureVideoContext);
-  
+
   const scroll = useScroll();
   const { scrollPageCount } = props;
 
@@ -20,6 +21,7 @@ const ScrollComposition = (props: ScrollCompositionProps) => {
 
   const heroSectionRef = useRef<HTMLDivElement | null>(null);
   const aboutSectionRef = useRef<HTMLDivElement | null>(null);
+  const featureSectionRef = useRef<HTMLDivElement | null>(null);
   const sceneRef = useRef<any | null>(null);
 
   useFrame((state, delta) => {
@@ -30,6 +32,10 @@ const ScrollComposition = (props: ScrollCompositionProps) => {
         1 / scrollPageCount,
         1 / scrollPageCount
       ); // from second page, for a page
+      const featureSectionShouldBeVisible = scroll.visible(
+        2 / scrollPageCount,
+        1 / scrollPageCount
+      );
 
       sceneRef.current.rotation.y = Math.PI - (Math.PI / 2) * rsqw(r1) * 1.0;
 
@@ -40,6 +46,10 @@ const ScrollComposition = (props: ScrollCompositionProps) => {
       aboutSectionRef?.current?.classList.toggle(
         "is-visible",
         aboutContentsShouldBeVisible
+      );
+      featureSectionRef?.current?.classList.toggle(
+        "is-visible",
+        featureSectionShouldBeVisible
       );
     }
   });
@@ -73,6 +83,12 @@ const ScrollComposition = (props: ScrollCompositionProps) => {
             greatest story of all.{" "}
           </p>
         </section>
+
+        <FeatureSection
+          sectionRef={featureSectionRef}
+          featureVideoUrl={featureVideoUrl}
+          wrapperClassName="scroll-composition__contact"
+        />
 
         {/* CONTACT SECTION */}
         <ContactSection wrapperClassName="scroll-composition__contact is-visible" />

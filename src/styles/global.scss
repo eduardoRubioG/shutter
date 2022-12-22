@@ -1,3 +1,4 @@
+@use "./colors" as c;
 /* Fonts */
 @font-face {
   font-family: "Andale Mono";
@@ -165,6 +166,7 @@ h3,
 h4,
 h5,
 h6 {
+  color: c.$ss-white;
   font-family: "QuincyCF-Medium";
 }
 
@@ -178,7 +180,7 @@ button {
   border: none;
   margin: 0;
   padding: 0;
-  font-family: sans-serif; /* Use whatever font-family you want */
+  font-family: "Quincy CF";
   font-size: 1rem;
   line-height: 1;
   background: transparent;
