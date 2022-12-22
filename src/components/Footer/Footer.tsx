@@ -3,14 +3,21 @@ import { Link } from "gatsby";
 import "./Footer.scss";
 
 export interface FooterProps {
-  wrapperClassname?: string; 
-  wrapperInlineStyles?: React.CSSProperties; 
+  wrapperClassname?: string;
+  wrapperInlineStyles?: React.CSSProperties;
+  stickToBottom?: boolean;
 }
 
 const Footer = (props: FooterProps) => {
-  const { wrapperClassname, wrapperInlineStyles } = props; 
+  const { wrapperClassname, wrapperInlineStyles, stickToBottom } = props;
+  const positionStyle: React.CSSProperties = stickToBottom
+    ? { marginTop: "auto" }
+    : {};
   return (
-    <footer className={`footer ${wrapperClassname || ''}`} style={wrapperInlineStyles}>
+    <footer
+      className={`footer ${wrapperClassname || ""}`}
+      style={{ ...wrapperInlineStyles, ...positionStyle }}
+    >
       <div className="footer__contents-wrapper">
         <div className="footer__links-wrapper">
           <Link to="/" className="footer__link">
@@ -33,7 +40,10 @@ const Footer = (props: FooterProps) => {
           src="../../images/logo-wired.png"
           alt="logo image"
         /> */}
-          <a className="footer__credits" href="https://www.webmusestudio.com/">{`Made with <3 by Web Muse Studio`}</a>
+          <a
+            className="footer__credits"
+            href="https://www.webmusestudio.com/"
+          >{`Made with <3 by Web Muse Studio`}</a>
         </div>
       </div>
     </footer>

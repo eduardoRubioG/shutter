@@ -1,11 +1,14 @@
 @use "../../styles/media-queries" as m;
-@use "../../styles/colors" as c; 
+@use "../../styles/colors" as c;
 
 .nav {
   $width: 100vw;
-	$height: 100vh;
+  $height: 100vh;
   width: $width;
   position: fixed;
+  top: 2rem;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: flex-end;
   z-index: 999;
@@ -106,7 +109,7 @@
     }
 
     &:hover:before {
-      transform: scaleX(.3);
+      transform: scaleX(0.3);
     }
 
     & a {
