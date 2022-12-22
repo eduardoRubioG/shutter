@@ -1,4 +1,5 @@
 import React from "react";
+import ContactSection from "../components/ContactSection/ContactSection";
 import Nav from "../components/Nav/Nav"
 import SplashCanvasWrapper from "../components/Three/SplashCanvasWrapper/SplashCanvasWrapper";
 
@@ -10,6 +11,7 @@ const App: React.FunctionComponent<AppProps> = () => {
       <Nav /> 
       <SplashCanvasWrapper />
       {/* Footer rolled into the scroll composition  */}
+      <ContactSection />
     </main>
   );
 };

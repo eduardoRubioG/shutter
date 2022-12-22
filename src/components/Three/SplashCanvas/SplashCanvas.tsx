@@ -89,7 +89,7 @@ const ScrollComposition = (props: ScrollCompositionProps) => {
         </section>
 
         {/* CONTACT SECTION */}
-        <ContactSection sectionRef={contactSectionRef} wrapperClassName="scroll-composition__contact"/>
+        {/* <ContactSection sectionRef={contactSectionRef} wrapperClassName="scroll-composition__contact"/> */}
 
         <Footer
           wrapperInlineStyles={{
