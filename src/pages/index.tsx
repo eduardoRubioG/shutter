@@ -1,4 +1,10 @@
+import { graphql } from "gatsby";
 import React from "react";
+
+// Contexts
+import { FeatureVideoContext } from "../components/AppContext/AppContext";
+
+// Components
 import GhostForm, {
   GhostFormElements,
   GhostFormTypes,
@@ -6,13 +12,18 @@ import GhostForm, {
 import Nav from "../components/Nav/Nav";
 import SplashCanvasWrapper from "../components/Three/SplashCanvasWrapper/SplashCanvasWrapper";
 
-interface AppProps {}
+interface AppProps {
+  data: any;
+}
 
-const App: React.FunctionComponent<AppProps> = () => {
+const App = (props: AppProps) => {
   return (
     <main>
       <Nav />
-      <SplashCanvasWrapper />
+      <FeatureVideoContext.Provider value={props.data.contentfulProject.projectName}>
+        <SplashCanvasWrapper />
+      </FeatureVideoContext.Provider>
+
       {/* Footer rolled into the scroll composition  */}
       <GhostForm
         formName="Landing Page Contact"
@@ -39,3 +50,15 @@ const App: React.FunctionComponent<AppProps> = () => {
 };
 
 export default App;
+
+export const pageQuery = graphql`
+  query MyQuery {
+    contentfulProject {
+      projectName
+      projectDescription {
+        projectDescription
+      }
+      videoUrl
+    }
+  }
+`;
