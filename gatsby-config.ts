@@ -2,7 +2,7 @@ import type { GatsbyConfig } from "gatsby";
 
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
-})
+});
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -16,6 +16,8 @@ const config: GatsbyConfig = {
   plugins: [
     "gatsby-plugin-sass",
     `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`, // Needed for dynamic images
     {
       resolve: `gatsby-source-contentful`,
       options: {
