@@ -33,27 +33,27 @@
     border-top: 3px solid c.$ss-white;
     justify-content: space-between;
     @include m.md {
-        padding-top: 3rem;
+      padding-top: 3rem;
     }
     & > span {
-        font-size: 64px;
-        font-family: 'Quincy CF';
-        color: c.$ss-white;
+      font-size: 64px;
+      font-family: "QuincyCF-Medium";
+      color: c.$ss-white;
 
-        @include m.xl {
-          font-size: 96px;
-          justify-self: flex-end;
-          align-self: flex-end;
-        }
-    }
-    & > img {
-        max-height: 100px;
+      @include m.xl {
+        font-size: 96px;
         justify-self: flex-end;
         align-self: flex-end;
-        @include m.xl {
-          justify-self: flex-start;
-          align-self: flex-start;
-        }
+      }
+    }
+    & > img {
+      max-height: 100px;
+      justify-self: flex-end;
+      align-self: flex-end;
+      @include m.xl {
+        justify-self: flex-start;
+        align-self: flex-start;
+      }
     }
 
     @include m.xl {
