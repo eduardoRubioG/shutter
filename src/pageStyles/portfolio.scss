@@ -1,0 +1,18 @@
+@use "../styles/colors" as c;
+@use "../styles/media-queries" as m;
+.portfolio {
+  padding: 0 1rem;
+  padding-top: 5rem;
+  max-width: 1440px;
+  margin: 0 auto;
+  @include m.lg {
+    width: 85%;
+  }
+  & > h1 {
+    color: c.$ss-orange;
+    font-size: 64px;
+    @include m.lg {
+      font-size: 64px;
+    }
+  }
+}

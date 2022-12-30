@@ -2,9 +2,6 @@
 @use "../../styles/colors" as c;
 
 .nav {
-  $width: 100vw;
-  $height: 100vh;
-  width: $width;
   position: fixed;
   top: 2rem;
   left: 0;
@@ -21,6 +18,7 @@
     margin: 0;
     background-color: c.$ss-black;
     height: 100vh;
+    height: 100dvh;
     width: 100%;
     max-width: 100%;
     position: fixed;

@@ -1,0 +1,68 @@
+@use "../../styles/media-queries" as m;
+.project {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 4rem auto;
+
+  @include m.lg {
+    & + & {
+      margin-top: 15rem;
+    }
+  }
+
+  @include m.lg {
+    max-width: 75%;
+    margin-right: 0;
+  }
+  &.--is-right {
+    @include m.lg {
+      margin-left: 0;
+    }
+  }
+
+  &__count {
+    position: absolute;
+    top: -10%;
+    right: 0;
+    opacity: 0.15;
+    font-size: 128px;
+    font-family: "QuincyCF-Medium";
+    z-index: -1;
+
+    &.--is-right {
+      left: 0;
+    }
+    @include m.lg {
+      font-size: 250px;
+    }
+  }
+
+  &__video {
+    width: 100%;
+    margin-top: 1rem;
+    min-height: 200px;
+    @include m.lg {
+      min-height: 500px;
+    }
+  }
+
+  &__title {
+    font-size: 48px;
+    font-family: "QuincyCF-Medium";
+    &.--is-right {
+      margin-left: auto;
+    }
+    @include m.lg {
+      font-size: 128px;
+    }
+  }
+
+  &__description {
+    margin-top: 2rem;
+    line-height: 150%;
+    @include m.lg {
+      font-size: 20px;
+    }
+  }
+}
