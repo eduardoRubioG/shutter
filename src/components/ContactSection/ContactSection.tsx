@@ -4,15 +4,17 @@ import ContactForm from "../ContactForm/ContactForm";
 
 interface ContactSectionProps {
   sectionRef?: React.MutableRefObject<HTMLDivElement | null>; // used for scroll composition
+  wrapperStyles?: React.CSSProperties;
   wrapperClassName?: string;
 }
 
 const ContactSection = (props: ContactSectionProps) => {
-  const { sectionRef, wrapperClassName } = props;
+  const { sectionRef, wrapperClassName, wrapperStyles } = props;
   return (
     <section
       ref={sectionRef}
       className={`contact-section ${wrapperClassName || ""}`}
+      style={wrapperStyles}
     >
       <div className="contact-section__color-bar"></div>
       <div className="contact-section__content">
@@ -24,8 +26,10 @@ const ContactSection = (props: ContactSectionProps) => {
           />
         </div>
         <div className="contact-section__deco">
-            <span>The<br></br>Story<br></br>Told.</span>
-            <img src="/images/sun-logo.png" alt="Alternative logo"></img>
+          <span>
+            The<br></br>Story<br></br>Told.
+          </span>
+          <img src="/images/sun-logo.png" alt="Alternative logo"></img>
         </div>
       </div>
     </section>
