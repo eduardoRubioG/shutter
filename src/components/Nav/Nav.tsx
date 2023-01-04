@@ -1,5 +1,6 @@
 import React from "react";
 import "./Nav.scss";
+import { Link } from "gatsby";
 
 import NavIcon from "../NavIcon/NavIcon";
 import { useState } from "react";
@@ -12,15 +13,15 @@ const navLinks = [
   },
   {
     text: "The Story",
-    url: "/",
+    url: "/about",
   },
   {
     text: "Portfolio",
-    url: "/",
+    url: "/portfolio",
   },
   {
     text: "Contact Us",
-    url: "/",
+    url: "/contact",
   },
 ];
 
@@ -47,7 +48,8 @@ const Nav = () => {
           {navLinks.map((link, index) => {
             return (
               <li key={index} className="nav__link">
-                <a href={link.url}>{link.text}</a>
+                {/* <a href={link.url}>{link.text}</a> */}
+                <Link to={link.url}>{link.text}</Link>
               </li>
             );
           })}
