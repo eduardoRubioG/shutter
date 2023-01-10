@@ -26,13 +26,17 @@ export const isVimeoLink = (url: string): boolean => {
   return url.includes("vimeo");
 };
 
-export const parseVideoEmbedUrl = (url: string): string => {
+const autoplayTag = (autoplay: boolean) => {
+  return autoplay ? "&autoplay=1" : "";
+};
+
+export const parseVideoEmbedUrl = (url: string, autoplay = false): string => {
   if (!url) return "";
   if (isYoutubeLink(url)) {
-    return convertYoutubeURL(url);
+    return convertYoutubeURL(url) + autoplayTag(autoplay);
   }
   if (isVimeoLink(url)) {
-    return convertVimeoURL(url);
+    return convertVimeoURL(url) + autoplayTag(autoplay);
   }
   return "";
 };

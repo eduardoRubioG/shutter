@@ -2,6 +2,7 @@ import React from "react";
 
 import { ScrollControls } from "@react-three/drei";
 import ChromeSphere from "../ChromeSphere/ChromeSphere";
+import Television from "../Television/Television";
 import Effects from "../Effect/Effect";
 import ScrollComposition from "../ScrollComposition/ScrollComposition";
 
@@ -16,6 +17,8 @@ const SplashCanvas = () => {
         <rectAreaLight color={"white"} intensity={20} />
 
         <ScrollComposition scrollPageCount={scrollPageCount} />
+        <Television position={[-8, 1, 5]} iframeUrl="" />
+
         <ChromeSphere position={[8.5, 4.7, 0.5]} />
       </ScrollControls>
     </>
