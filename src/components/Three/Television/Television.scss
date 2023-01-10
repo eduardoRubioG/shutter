@@ -1,0 +1,9 @@
+.television {
+  &__screen iframe {
+    width: 658px;
+    height: 480px;
+    border: none;
+    border-radius: 20px;
+    background: #000000;
+  }
+}
