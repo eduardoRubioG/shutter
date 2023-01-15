@@ -3,11 +3,11 @@ import React from "react";
 // ThreeJs
 import { Canvas } from "@react-three/fiber";
 import SplashCanvas from "../SplashCanvas/SplashCanvas";
-import { useContextBridge } from "@react-three/drei";
+import { OrbitControls, useContextBridge } from "@react-three/drei";
 import { FeatureVideoContext } from "../../AppContext/AppContext";
 
 const SplashCanvasWrapper = () => {
-  // Necessary to pass context into R3F canvas 
+  // Necessary to pass context into R3F canvas
   const ContextBridge = useContextBridge(FeatureVideoContext);
   return (
     <div style={{ height: "100vh" }}>
@@ -16,7 +16,7 @@ const SplashCanvasWrapper = () => {
           fov: 45,
           near: 0.1,
           far: 200,
-          position: [21, 4, 0],
+          position: [24, 6, 0],
         }}
       >
         <color attach="background" args={["#101115"]} />
