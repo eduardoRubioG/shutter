@@ -1,4 +1,7 @@
 .television {
+  &__screen {
+    position: fixed !important;
+  }
   &__screen iframe {
     width: 658px;
     height: 480px;

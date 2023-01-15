@@ -11,22 +11,10 @@ import "../pageStyles/portfolio.scss";
 import { graphql } from "gatsby";
 import Project from "../components/Project/Project";
 
-interface SSProject {
-  projectName: string;
-  projectDescription: {
-    projectDescription: string;
-  };
-  videoUrl: string;
-}
-interface PortfolioPageProps {
-  data: {
-    allContentfulProject: {
-      nodes: SSProject[];
-    };
-  };
-}
+// types
+import { ProjectDataFromQuery, SSProject } from "../types";
 
-const PortfolioPage = (props: PortfolioPageProps) => {
+const PortfolioPage = (props: ProjectDataFromQuery) => {
   const projectList: SSProject[] = props.data.allContentfulProject.nodes;
   const projectElements: JSX.Element[] = projectList.map(
     (project: SSProject, index: number) => {

@@ -1,23 +1,50 @@
-import React, { useContext } from "react";
-import { Scroll, useGLTF, useScroll } from "@react-three/drei";
+// React / Contexts
+import React, { SyntheticEvent, useContext, useRef, useState } from "react";
+import {
+  FeatureVideoContext,
+  ProjectDataContext,
+} from "../../AppContext/AppContext";
+
+// DREI
+import { Scroll, useScroll } from "@react-three/drei";
+
+// R3F
 import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
+
+// Components
 import ContactSection from "../../ContactSection/ContactSection";
 import Footer from "../../Footer/Footer";
+import Scene from "../Scene/Scene";
+
+// Styles
 import "./ScrollComposition.scss";
-import { FeatureVideoContext } from "../../AppContext/AppContext";
-import FeatureSection from "../../FeatureVideoSection/FeatureSection";
+
+// Types
+import { Vector3 } from "three";
+
+// Utils
+import { rsqw, scrollBetweenTwoVectors } from "../../../utils/threeUtils";
+import FeaturedSection from "../FeaturedSection/FeaturedSection";
 
 export interface ScrollCompositionProps {
   scrollPageCount: number;
 }
 const ScrollComposition = (props: ScrollCompositionProps) => {
-  const featureVideoUrl = useContext(FeatureVideoContext);
+  const allProjectsData = useContext(ProjectDataContext);
+  const [currentSelectedVideo, setCurrentSelectedVideo] = useState<string>("");
+
+  const handleProjectSelection = (event: SyntheticEvent) => {
+    if (!event) return;
+    const { value } = event.target as HTMLButtonElement;
+    setCurrentSelectedVideo(value);
+  };
 
   const scroll = useScroll();
   const { scrollPageCount } = props;
-
-  const model = useGLTF("/models/sand.glb");
+  const cameraPositionStart = new Vector3(24, 6, 0);
+  // const cameraPositionTvView = new Vector3(57.4, 14.3, 3.5);
+  const cameraPositionTvView = new Vector3(57.4, 10, 3.5);
+  const camSpeed = 0.5;
 
   const heroSectionRef = useRef<HTMLDivElement | null>(null);
   const aboutSectionRef = useRef<HTMLDivElement | null>(null);
@@ -37,7 +64,23 @@ const ScrollComposition = (props: ScrollCompositionProps) => {
         1 / scrollPageCount
       );
 
-      sceneRef.current.rotation.y = Math.PI - (Math.PI / 2) * rsqw(r1) * 1.0;
+      const camScrollAlpha = scroll.range(
+        2 / scrollPageCount,
+        1 / scrollPageCount
+      );
+
+      state.camera.position.copy(
+        scrollBetweenTwoVectors(
+          cameraPositionStart,
+          cameraPositionTvView,
+          state.camera.position,
+          camSpeed,
+          camScrollAlpha,
+          delta
+        )
+      );
+
+      sceneRef.current.rotation.y = -1 + rsqw(r1) * 1.0;
 
       heroSectionRef?.current?.classList.toggle(
         "is-visible",
@@ -56,8 +99,8 @@ const ScrollComposition = (props: ScrollCompositionProps) => {
 
   return (
     <>
-      <primitive ref={sceneRef} object={model.scene} position-x={0} />
-      <Scroll html style={{ width: "100%" }}>
+      <Scene sceneRef={sceneRef} iframeUrl={currentSelectedVideo} />
+      <Scroll html>
         {/* HERO ABOVE THE FOLD SECTION */}
         <section ref={heroSectionRef} className="scroll-composition__hero">
           <div className="scroll-composition__hero-content">
@@ -84,10 +127,16 @@ const ScrollComposition = (props: ScrollCompositionProps) => {
           </p>
         </section>
 
-        <FeatureSection
+        {/* <FeatureSection
           sectionRef={featureSectionRef}
           featureVideoUrl={featureVideoUrl}
           wrapperClassName="scroll-composition__contact"
+        /> */}
+        <FeaturedSection
+          sectionRef={featureSectionRef}
+          wrapperClassName="scroll-composition__contact"
+          projectsData={allProjectsData}
+          handleProjectSelection={handleProjectSelection}
         />
 
         {/* CONTACT SECTION */}
@@ -104,8 +153,5 @@ const ScrollComposition = (props: ScrollCompositionProps) => {
     </>
   );
 };
-
-const rsqw = (t: number, delta = 0.1, a = 1, f = 1 / (2 * Math.PI)) =>
-  (a / Math.atan(1 / delta)) * Math.atan(Math.sin(2 * Math.PI * t * f) / delta);
 
 export default ScrollComposition;

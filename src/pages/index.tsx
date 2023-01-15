@@ -2,7 +2,7 @@ import { graphql } from "gatsby";
 import React from "react";
 
 // Contexts
-import { FeatureVideoContext } from "../components/AppContext/AppContext";
+import { ProjectDataContext } from "../components/AppContext/AppContext";
 
 // Components
 import GhostForm, {
@@ -11,20 +11,17 @@ import GhostForm, {
 } from "../components/GhostForm/GhostForm";
 import Nav from "../components/Nav/Nav";
 import SplashCanvasWrapper from "../components/Three/SplashCanvasWrapper/SplashCanvasWrapper";
+import { ProjectDataFromQuery } from "../types";
 
-interface AppProps {
-  data: any;
-}
-
-const App = (props: AppProps) => {
+const App = (props: ProjectDataFromQuery) => {
   return (
     <main>
       <Nav />
-      <FeatureVideoContext.Provider
-        value={props.data.contentfulProject.videoUrl}
+      <ProjectDataContext.Provider
+        value={props.data.allContentfulProject.nodes}
       >
         <SplashCanvasWrapper />
-      </FeatureVideoContext.Provider>
+      </ProjectDataContext.Provider>
 
       {/* Footer rolled into the scroll composition  */}
       <GhostForm
@@ -54,13 +51,15 @@ const App = (props: AppProps) => {
 export default App;
 
 export const pageQuery = graphql`
-  query MyQuery {
-    contentfulProject {
-      projectName
-      projectDescription {
-        projectDescription
+  query PortfolioQuery {
+    allContentfulProject {
+      nodes {
+        projectName
+        projectDescription {
+          projectDescription
+        }
+        videoUrl
       }
-      videoUrl
     }
   }
 `;
