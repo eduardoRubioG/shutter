@@ -1,0 +1,38 @@
+@use "../../styles/colors" as c;
+@use "../../styles/media-queries" as m;
+.about-html {
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  padding: 1rem;
+  @include m.lg {
+    padding: 3rem;
+  }
+  color: c.$ss-white;
+  & > h2 {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 2rem;
+    font-size: 68px;
+    @include m.lg {
+      max-width: 50%;
+      font-size: 128px;
+    }
+  }
+  & > p {
+    width: 100%;
+    font-size: 18px;
+    max-width: 85%;
+    margin-left: 2rem;
+    @include m.lg {
+      margin-left: 6rem;
+      font-size: 24px;
+      max-width: 50%;
+    }
+  }
+}

@@ -1,0 +1,38 @@
+@use "../../styles/colors" as c;
+@use "../../styles/media-queries" as m;
+
+.hero-html {
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+
+  padding: 1rem;
+  @include m.lg {
+    padding: 3rem;
+  }
+  &__content {
+    font-size: 18px;
+    width: 100%;
+    max-width: 400px;
+    color: c.$ss-white;
+    @include m.lg {
+      font-size: 5vw;
+      width: 100%;
+      max-width: 33%;
+    }
+  }
+  &__title {
+    max-width: 100%;
+  }
+  &__sub {
+    color: c.$ss-white;
+    font-size: 18px;
+    @include m.lg {
+      font-size: 24px;
+    }
+  }
+}
