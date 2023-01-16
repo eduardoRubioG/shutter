@@ -1,12 +1,9 @@
 .television {
-  &__screen {
-    position: fixed !important;
-  }
   &__screen iframe {
     width: 658px;
     height: 480px;
     border: none;
     border-radius: 20px;
-    background: #000000;
+    background: #1b1b1b;
   }
 }
