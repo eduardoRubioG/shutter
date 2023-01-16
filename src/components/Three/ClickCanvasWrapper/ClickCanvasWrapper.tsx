@@ -33,6 +33,7 @@ const ClickCanvasWrapper = (props: ClickCanvasWrapperProps) => {
         }}
       >
         <OrbitControls enableZoom={false} enableRotate={false} />
+        {/* <OrbitControls /> */}
         <color attach="background" args={["#101115"]} />
         <ContextBridge>
           <ClickCanvas

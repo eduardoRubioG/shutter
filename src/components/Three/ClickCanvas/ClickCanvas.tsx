@@ -1,7 +1,8 @@
 import { Float, Html } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import React, { SyntheticEvent, useContext } from "react";
+import React, { SyntheticEvent, useContext, useState } from "react";
 import { Vector3 } from "three";
+import { SSProject } from "../../../types";
 import { vectorEquals } from "../../../utils/threeUtils";
 import AboutHtml from "../../AboutHtml/AboutHtml";
 import { ProjectDataContext } from "../../AppContext/AppContext";
@@ -27,12 +28,15 @@ const cameraPositions: CameraPositionByScene[] = [
   {
     position: new Vector3(23, 8, -12),
   },
-  { position: new Vector3(44, 7, 2) },
+  { position: new Vector3(44, 8.5, 2) },
 ];
 
 const ClickCanvas = (props: ClickCanvasProps) => {
   const { sceneId, handleSceneChange } = props;
-  const allProjectsData = useContext(ProjectDataContext);
+  const allProjectsData: SSProject[] = useContext(ProjectDataContext);
+  const [activeProject, setActiveProject] = useState<SSProject>(
+    allProjectsData[0]
+  );
 
   function onNext() {
     handleSceneChange("next");
@@ -42,8 +46,11 @@ const ClickCanvas = (props: ClickCanvasProps) => {
   }
   function handleProjectSelection(event: SyntheticEvent) {
     if (!event) return;
-    const { value } = event.target as HTMLButtonElement;
-    console.log(value);
+    const { value } = event.target as HTMLButtonElement; // returns project name
+    const selectedProject: SSProject | undefined = allProjectsData.find(
+      (project) => value === project.projectName
+    );
+    if (selectedProject) setActiveProject(selectedProject);
   }
   useFrame((state, delta) => {
     if (
@@ -63,7 +70,7 @@ const ClickCanvas = (props: ClickCanvasProps) => {
   return (
     <>
       <Effect />
-      <Scene />
+      <Scene iframeUrl={activeProject.videoUrl} />
       <directionalLight intensity={10.0} position={[0, 0, 5]} color="blue" />
       <hemisphereLight intensity={0.03} />
       <rectAreaLight
@@ -87,8 +94,14 @@ const ClickCanvas = (props: ClickCanvasProps) => {
           <FreshFade show={sceneId === 1} animationLength={550} fullScreen>
             <AboutHtml />
           </FreshFade>
-          <FreshFade show={sceneId === 2} animationLength={550} fullScreen>
+          <FreshFade
+            show={sceneId === 2}
+            animationLength={350}
+            fullScreen
+            options={["slide-in"]}
+          >
             <FeaturedSection
+              activeProjectName={activeProject.projectName}
               projectsData={allProjectsData}
               handleProjectSelection={handleProjectSelection}
             />

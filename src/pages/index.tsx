@@ -5,11 +5,13 @@ import React from "react";
 import { ProjectDataContext } from "../components/AppContext/AppContext";
 
 // Components
+import Nav from "../components/Nav/Nav";
+import ContactSection from "../components/ContactSection/ContactSection";
+import Footer from "../components/Footer/Footer";
 import GhostForm, {
   GhostFormElements,
   GhostFormTypes,
 } from "../components/GhostForm/GhostForm";
-import Nav from "../components/Nav/Nav";
 import ClickCanvasWrapper from "../components/Three/ClickCanvasWrapper/ClickCanvasWrapper";
 import SplashCanvasWrapper from "../components/Three/SplashCanvasWrapper/SplashCanvasWrapper";
 import { ProjectDataFromQuery } from "../types";
@@ -25,8 +27,11 @@ const App = (props: ProjectDataFromQuery) => {
         <ClickCanvasWrapper />
       </ProjectDataContext.Provider>
 
-      {/* Footer rolled into the scroll composition  */}
-      <GhostForm
+      <ContactSection />
+      <Footer />
+
+      {/* Testing bc we might not need the ghost form anymore */}
+      {/* <GhostForm
         formName="Landing Page Contact"
         fields={[
           {
@@ -45,7 +50,7 @@ const App = (props: ProjectDataFromQuery) => {
             elementType: GhostFormElements.INPUT,
           },
         ]}
-      />
+      /> */}
     </main>
   );
 };
