@@ -10,6 +10,7 @@ import GhostForm, {
   GhostFormTypes,
 } from "../components/GhostForm/GhostForm";
 import Nav from "../components/Nav/Nav";
+import ClickCanvasWrapper from "../components/Three/ClickCanvasWrapper/ClickCanvasWrapper";
 import SplashCanvasWrapper from "../components/Three/SplashCanvasWrapper/SplashCanvasWrapper";
 import { ProjectDataFromQuery } from "../types";
 
@@ -20,7 +21,8 @@ const App = (props: ProjectDataFromQuery) => {
       <ProjectDataContext.Provider
         value={props.data.allContentfulProject.nodes}
       >
-        <SplashCanvasWrapper />
+        {/* <SplashCanvasWrapper /> */}
+        <ClickCanvasWrapper />
       </ProjectDataContext.Provider>
 
       {/* Footer rolled into the scroll composition  */}

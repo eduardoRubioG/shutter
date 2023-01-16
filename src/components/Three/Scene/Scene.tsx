@@ -6,23 +6,13 @@ import { degToRad } from "three/src/math/MathUtils";
 import Television from "../Television/Television";
 
 interface SceneProps {
-  sceneRef: React.MutableRefObject<any>;
+  sceneRef?: React.MutableRefObject<any>;
   iframeUrl?: string;
 }
 
 const Scene = (props: SceneProps) => {
   const { sceneRef, iframeUrl = "" } = props;
   const model = useGLTF("/models/sand.glb");
-
-  const { x, y, z, thetax, thetay, thetaz, scale } = useControls("TV", {
-    x: { value: 31, step: 1, min: -100, max: 100 },
-    y: { value: 4, step: 1, min: -100, max: 100 },
-    z: { value: 6, step: 1, min: -100, max: 100 },
-    thetax: { value: -6, step: 1, min: -360, max: 360 },
-    thetay: { value: 135, step: 1, min: -360, max: 360 },
-    thetaz: { value: 0, step: 1, min: -360, max: 360 },
-    scale: { value: 2.25, step: 0.25, min: -3, max: 3 },
-  });
 
   return (
     <group ref={sceneRef}>
@@ -43,11 +33,11 @@ const Scene = (props: SceneProps) => {
       <Television
         iframeUrl={iframeUrl}
         renderHtml={iframeUrl.length > 0}
-        scale={scale}
-        position={[x, y, z]}
-        rotationX={degToRad(thetax)}
-        rotationY={degToRad(thetay)}
-        rotationZ={degToRad(thetaz)}
+        scale={2.25}
+        position={[31, 4, 6]}
+        rotationX={degToRad(-6)}
+        rotationY={degToRad(135)}
+        rotationZ={degToRad(0)}
       />
     </group>
   );
