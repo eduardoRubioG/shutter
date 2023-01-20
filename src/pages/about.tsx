@@ -59,7 +59,7 @@ const AboutPage = (props: AboutPageProps) => {
       <div className="about__splash-wrapper">
         <div className="about__title-img-block">
           <img src="/images/sun-logo.png" alt="Alternative logo"></img>
-          <h2>The story.</h2>
+          <h2>The Story</h2>
         </div>
         <p style={{ maxWidth: "90%", marginLeft: "auto" }}>
           The foundation of Shutterstinct is built by the people and their

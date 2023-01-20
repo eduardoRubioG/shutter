@@ -1,9 +1,8 @@
 export interface SSProject {
   projectName: string;
-  projectDescription: {
-    projectDescription: string;
-  };
   videoUrl: string;
+  isDemoReel: boolean;
+  updatedAt: string;
 }
 
 export interface ProjectDataFromQuery {

@@ -16,11 +16,11 @@ const navLinks = [
     url: "/about",
   },
   {
-    text: "Portfolio",
+    text: "Pieces",
     url: "/portfolio",
   },
   {
-    text: "Contact Us",
+    text: "Reach Out",
     url: "/contact",
   },
 ];

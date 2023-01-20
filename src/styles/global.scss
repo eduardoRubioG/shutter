@@ -196,3 +196,19 @@ button {
 a {
   text-decoration: none;
 }
+
+::-webkit-scrollbar,
+scrollbar {
+  background-color: rgba(
+    c.$ss-black,
+    0.3
+  ); /* background color of the scrollbar */
+  width: 12px;
+}
+
+// /* for the thumb (the part that you drag) */
+::-webkit-scrollbar-thumb,
+scrollbar thumb {
+  background-color: rgba(c.$ss-white, 0.3); /* color of the thumb */
+  border-radius: 10px; /* roundness of the thumb */
+}

@@ -8,10 +8,6 @@ import { ProjectDataContext } from "../components/AppContext/AppContext";
 import Nav from "../components/Nav/Nav";
 import ContactSection from "../components/ContactSection/ContactSection";
 import Footer from "../components/Footer/Footer";
-import GhostForm, {
-  GhostFormElements,
-  GhostFormTypes,
-} from "../components/GhostForm/GhostForm";
 import ClickCanvasWrapper from "../components/Three/ClickCanvasWrapper/ClickCanvasWrapper";
 import SplashCanvasWrapper from "../components/Three/SplashCanvasWrapper/SplashCanvasWrapper";
 import { ProjectDataFromQuery } from "../types";
@@ -29,28 +25,6 @@ const App = (props: ProjectDataFromQuery) => {
 
       <ContactSection />
       <Footer />
-
-      {/* Testing bc we might not need the ghost form anymore */}
-      {/* <GhostForm
-        formName="Landing Page Contact"
-        fields={[
-          {
-            name: "name",
-            type: GhostFormTypes.TEXT,
-            elementType: GhostFormElements.INPUT,
-          },
-          {
-            name: "email",
-            type: GhostFormTypes.EMAIL,
-            elementType: GhostFormElements.INPUT,
-          },
-          {
-            name: "message",
-            type: GhostFormTypes.TEXT,
-            elementType: GhostFormElements.INPUT,
-          },
-        ]}
-      /> */}
     </main>
   );
 };
@@ -62,10 +36,9 @@ export const pageQuery = graphql`
     allContentfulProject {
       nodes {
         projectName
-        projectDescription {
-          projectDescription
-        }
         videoUrl
+        isDemoReel
+        updatedAt
       }
     }
   }
