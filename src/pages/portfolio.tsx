@@ -16,28 +16,19 @@ import { ProjectDataFromQuery, SSProject } from "../types";
 
 const PortfolioPage = (props: ProjectDataFromQuery) => {
   const projectList: SSProject[] = props.data.allContentfulProject.nodes;
-  const projectElements: JSX.Element[] = projectList.map(
-    (project: SSProject, index: number) => {
-      const { projectDescription, videoUrl, projectName } = project;
-      return (
-        <Project
-          key={index}
-          count={index + 1}
-          url={videoUrl}
-          name={projectName}
-          description={projectDescription.projectDescription}
-          isRight={(index + 1) % 2 === 0}
-        />
-      );
-    }
-  );
+  const projectElements: JSX.Element[] = projectList
+    .filter((project: SSProject) => !project.isDemoReel)
+    .map((project: SSProject, index: number) => {
+      const { videoUrl, projectName } = project;
+      return <Project key={index} url={videoUrl} name={projectName} />;
+    });
   return (
     <main
       className="portfolio"
       style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
     >
       <Nav />
-      <h1>Our works</h1>
+      <h1>Pieces</h1>
       {projectElements}
       <Footer stickToBottom />
     </main>
@@ -50,10 +41,9 @@ export const pageQuery = graphql`
     allContentfulProject {
       nodes {
         projectName
-        projectDescription {
-          projectDescription
-        }
         videoUrl
+        isDemoReel
+        updatedAt
       }
     }
   }

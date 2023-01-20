@@ -24,13 +24,13 @@ const Footer = (props: FooterProps) => {
             Home
           </Link>
           <Link to="/about" className="footer__link">
-            The story
+            The Story
           </Link>
           <Link to="/portfolio" className="footer__link">
-            Portfolio
+            Pieces
           </Link>
           <Link to="/contact" className="footer__link">
-            Contact us
+            Reach Out
           </Link>
         </div>
         <div className="footer__subcontent">

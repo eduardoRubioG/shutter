@@ -1,6 +1,6 @@
 import { Float, Html } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import React, { SyntheticEvent, useContext, useState } from "react";
+import React, { SyntheticEvent, useContext, useEffect, useState } from "react";
 import { Vector3 } from "three";
 import { SSProject } from "../../../types";
 import { vectorEquals } from "../../../utils/threeUtils";
@@ -35,8 +35,46 @@ const ClickCanvas = (props: ClickCanvasProps) => {
   const { sceneId, handleSceneChange } = props;
   const allProjectsData: SSProject[] = useContext(ProjectDataContext);
   const [activeProject, setActiveProject] = useState<SSProject>(
-    allProjectsData[0]
+    allProjectsData.find((project) => project.isDemoReel) || allProjectsData[0]
   );
+
+  useEffect(() => {
+    // Sort the projects by updated time
+    // append autoplay to all videos
+    // If demo reel available, make it the first video
+    //
+    if (allProjectsData && allProjectsData.length) {
+      const demoReel: SSProject | undefined = allProjectsData.find(
+        (project: SSProject) => project.isDemoReel
+      );
+      const sortedProjects: SSProject[] = allProjectsData
+        .filter((project) => !project.isDemoReel)
+        .sort(function (a, b) {
+          let dateA = new Date(a.updatedAt);
+          let dateB = new Date(b.updatedAt);
+          return (dateA as any) - (dateB as any);
+        })
+        .map((project: SSProject) => {
+          if (!project.videoUrl.includes("&autoplay=1")) {
+            return {
+              ...project,
+              videoUrl: project.videoUrl + "&autoplay=1",
+            };
+          }
+          return project;
+        });
+      if (demoReel) {
+        sortedProjects.unshift(demoReel);
+      } else {
+        // If demo reel is not available, remove auto play for first video
+        sortedProjects[0] = {
+          ...sortedProjects[0],
+          videoUrl: sortedProjects[0].videoUrl.split("&autoplay=1")[0],
+        };
+      }
+      console.log("sorted project", sortedProjects);
+    }
+  }, []);
 
   function onNext() {
     handleSceneChange("next");

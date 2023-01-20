@@ -23,7 +23,7 @@ const FeaturedSection = (props: FeaturedSectionProps) => {
           <h2>Featured Works</h2>
           <p>Click on any project to view</p>
         </div>
-        <div style={{ overflowY: "auto" }}>
+        <div className="featured-section__list">
           {projectsData?.map((project: SSProject, index: number) => (
             <button
               className={`featured-section__item-btn ${
