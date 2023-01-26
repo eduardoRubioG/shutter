@@ -20,6 +20,10 @@
 $ss-display: QuincyCF-Medium, BlinkMacSystemFont, sans-serif;
 $ss-body: Andale Mono, BlinkMacSystemFont, sans-serif;
 
+body {
+  overflow: hidden;
+}
+
 html,
 body,
 div,

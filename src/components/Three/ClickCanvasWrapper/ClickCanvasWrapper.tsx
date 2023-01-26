@@ -2,6 +2,7 @@ import { OrbitControls, useContextBridge } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import React, { useState } from "react";
 import { FeatureVideoContext } from "../../AppContext/AppContext";
+import ScrollHUD from "../../ScrollHUD/ScrollHUD";
 import ClickCanvas from "../ClickCanvas/ClickCanvas";
 
 interface ClickCanvasWrapperProps {}
@@ -23,26 +24,29 @@ const ClickCanvasWrapper = (props: ClickCanvasWrapperProps) => {
   // Necessary to pass context into R3F canvas
   const ContextBridge = useContextBridge(FeatureVideoContext);
   return (
-    <div style={{ height: "100vh" }}>
-      <Canvas
-        camera={{
-          fov: 45,
-          near: 0.1,
-          far: 200,
-          position: [24, 6, 0],
-        }}
-      >
-        <OrbitControls enableZoom={false} enableRotate={false} />
-        {/* <OrbitControls /> */}
-        <color attach="background" args={["#101115"]} />
-        <ContextBridge>
-          <ClickCanvas
-            sceneId={sceneId}
-            handleSceneChange={handleSceneIdChange}
-          />
-        </ContextBridge>
-      </Canvas>
-    </div>
+    <>
+      <div style={{ height: "100vh" }}>
+        <Canvas
+          camera={{
+            fov: 45,
+            near: 0.1,
+            far: 200,
+            position: [24, 6, 0],
+          }}
+        >
+          <OrbitControls enableZoom={false} enableRotate={false} />
+          {/* <OrbitControls /> */}
+          <color attach="background" args={["#101115"]} />
+          <ContextBridge>
+            <ClickCanvas
+              sceneId={sceneId}
+              handleSceneChange={handleSceneIdChange}
+            />
+          </ContextBridge>
+        </Canvas>
+      </div>
+      <ScrollHUD sceneId={sceneId} />
+    </>
   );
 };
 

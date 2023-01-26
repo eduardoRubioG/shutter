@@ -42,13 +42,16 @@ const Nav = () => {
 
   return (
     <nav className="nav">
+      <img
+        src="/images/sm-logo-ss-vert.svg"
+        alt="Primary logo small version"
+      ></img>
       <NavIcon isOpen={isOpen} navCallback={setNavIsOpen} />
       <div id="nav-menu" className={`nav__content ${isOpen ? "nav-open" : ""}`}>
         <ul className="nav__list">
           {navLinks.map((link, index) => {
             return (
               <li key={index} className="nav__link">
-                {/* <a href={link.url}>{link.text}</a> */}
                 <Link to={link.url}>{link.text}</Link>
               </li>
             );

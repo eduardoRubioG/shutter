@@ -8,6 +8,7 @@ import AboutHtml from "../../AboutHtml/AboutHtml";
 import { ProjectDataContext } from "../../AppContext/AppContext";
 import FreshFade from "../../FreshFade/FreshFade";
 import HomeHtml from "../../HomeHtml/HomeHtml";
+import SceneControls from "../../SceneControls/SceneControls";
 import ChromeSphere from "../ChromeSphere/ChromeSphere";
 import Effect from "../Effect/Effect";
 import FeaturedSection from "../FeaturedSection/FeaturedSection";
@@ -72,7 +73,6 @@ const ClickCanvas = (props: ClickCanvasProps) => {
           videoUrl: sortedProjects[0].videoUrl.split("&autoplay=1")[0],
         };
       }
-      console.log("sorted project", sortedProjects);
     }
   }, []);
 
@@ -144,14 +144,7 @@ const ClickCanvas = (props: ClickCanvasProps) => {
               handleProjectSelection={handleProjectSelection}
             />
           </FreshFade>
-          <div className="click-canvas__scene-nav">
-            <button onClick={onBack} className="click-canvas__scene-nav--btn">
-              Back
-            </button>
-            <button onClick={onNext} className="click-canvas__scene-nav--btn">
-              Next
-            </button>
-          </div>
+          <SceneControls sceneId={sceneId} onBack={onBack} onNext={onNext} />
         </section>
       </Html>
     </>

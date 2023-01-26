@@ -1,5 +1,5 @@
 import { graphql } from "gatsby";
-import React from "react";
+import React, { useEffect } from "react";
 
 // Contexts
 import { ProjectDataContext } from "../components/AppContext/AppContext";
@@ -13,8 +13,15 @@ import SplashCanvasWrapper from "../components/Three/SplashCanvasWrapper/SplashC
 import { ProjectDataFromQuery } from "../types";
 
 const App = (props: ProjectDataFromQuery) => {
+  useEffect(() => {
+    // Adding this so that user doesn't get scroll locked
+    // if they refresh post scrolling past the Canvas
+    if (window && window.scrollY !== 0) {
+      document.body.style.overflow = "auto";
+    }
+  }, []);
   return (
-    <main>
+    <main style={{ position: "relative" }}>
       <Nav />
       <ProjectDataContext.Provider
         value={props.data.allContentfulProject.nodes}
