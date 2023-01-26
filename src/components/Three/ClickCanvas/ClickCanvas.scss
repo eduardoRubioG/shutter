@@ -1,28 +1,6 @@
-@use "../../../styles/colors" as c;
 .click-canvas {
   min-height: 100vh;
   max-width: 1440px;
   margin: 0 auto;
   position: relative;
-
-  &__scene-nav {
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    right: 0;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-
-    &--btn {
-      padding: 10px 36px;
-      margin: 10px;
-      color: c.$ss-white;
-      border: 2px solid c.$ss-white;
-      border-radius: 3px;
-      cursor: pointer;
-    }
-  }
 }

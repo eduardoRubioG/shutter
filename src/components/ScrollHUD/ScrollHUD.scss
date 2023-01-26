@@ -1,0 +1,27 @@
+.scroll-hud {
+  position: absolute;
+  left: 3rem;
+  top: 92vh;
+
+  width: 2px;
+  height: 20vh;
+  border-radius: 100px;
+  background-color: rgba(gray, 0.9);
+
+  transform: translateY(-100%);
+  &__pos {
+    position: absolute;
+    top: 10%;
+    width: 2px;
+    height: 28%;
+    background-color: rgba(black, 0.3);
+    transform: translateY(0%);
+    transition: transform 200ms ease;
+    &.p-1 {
+      transform: translateY(90%);
+    }
+    &.p-2 {
+      transform: translateY(180%);
+    }
+  }
+}

@@ -11,6 +11,11 @@
   z-index: 999;
   background-color: none;
 
+  & img {
+    max-height: 3rem;
+    margin-left: 2rem;
+  }
+
   &__content {
     z-index: -1;
 
