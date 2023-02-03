@@ -31,6 +31,7 @@ interface AboutPageProps {
 
 const AboutPage = (props: AboutPageProps) => {
   const teamMembers: TeamMember[] = props.data.allContentfulTeamMember.nodes;
+  document.body.style.overflow = "auto";
 
   const teamElements: JSX.Element[] = teamMembers
     .map((member: TeamMember, index: number) => {

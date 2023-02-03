@@ -1,19 +1,29 @@
+// React
+import React, { SyntheticEvent, useContext, useEffect, useState } from "react";
+import { ProjectDataContext } from "../../AppContext/AppContext";
+
+// Three
 import { Float, Html } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import React, { SyntheticEvent, useContext, useEffect, useState } from "react";
 import { Vector3 } from "three";
-import { SSProject } from "../../../types";
 import { vectorEquals } from "../../../utils/threeUtils";
+
+// Types
+import { SSProject } from "../../../types";
+
+// Styles
+import "./ClickCanvas.scss";
+
+// Components
 import AboutHtml from "../../AboutHtml/AboutHtml";
-import { ProjectDataContext } from "../../AppContext/AppContext";
-import FreshFade from "../../FreshFade/FreshFade";
 import HomeHtml from "../../HomeHtml/HomeHtml";
+import FreshFade from "../../FreshFade/FreshFade";
 import SceneControls from "../../SceneControls/SceneControls";
 import ChromeSphere from "../ChromeSphere/ChromeSphere";
 import Effect from "../Effect/Effect";
 import FeaturedSection from "../FeaturedSection/FeaturedSection";
+import Lighting from "../Lighting/Lighting";
 import Scene from "../Scene/Scene";
-import "./ClickCanvas.scss";
 
 interface ClickCanvasProps {
   sceneId: number;
@@ -29,7 +39,7 @@ const cameraPositions: CameraPositionByScene[] = [
   {
     position: new Vector3(23, 8, -12),
   },
-  { position: new Vector3(44, 8.5, 2) },
+  { position: new Vector3(44, 7, 2) },
 ];
 
 const ClickCanvas = (props: ClickCanvasProps) => {
@@ -109,18 +119,7 @@ const ClickCanvas = (props: ClickCanvasProps) => {
     <>
       <Effect />
       <Scene iframeUrl={activeProject.videoUrl} />
-      <directionalLight intensity={10.0} position={[0, 0, 5]} color="blue" />
-      <hemisphereLight intensity={0.03} />
-      <rectAreaLight
-        color={"white"}
-        intensity={20}
-        width={200}
-        height={10}
-        position={[-23, -1, 0]}
-        rotation-x={3}
-        rotation-y={4.5}
-        rotation-z={0}
-      />
+      <Lighting />
       <Float floatIntensity={0} speed={2} floatingRange={[-0.05, 0.05]}>
         <ChromeSphere position={[8.5, 4.7, 0.5]} scale={1.5} />
       </Float>

@@ -15,6 +15,7 @@ import Project from "../components/Project/Project";
 import { ProjectDataFromQuery, SSProject } from "../types";
 
 const PortfolioPage = (props: ProjectDataFromQuery) => {
+  document.body.style.overflow = "auto";
   const projectList: SSProject[] = props.data.allContentfulProject.nodes;
   const projectElements: JSX.Element[] = projectList
     .filter((project: SSProject) => !project.isDemoReel)

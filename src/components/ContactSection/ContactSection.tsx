@@ -19,7 +19,7 @@ const ContactSection = (props: ContactSectionProps) => {
       <div className="contact-section__color-bar"></div>
       <div className="contact-section__content">
         <div className="contact-section__form">
-          <h2>Reach out</h2>
+          <h2>Reach Out</h2>
           <ContactForm
             formId="landing-page-contact"
             formName="Landing Page Contact"

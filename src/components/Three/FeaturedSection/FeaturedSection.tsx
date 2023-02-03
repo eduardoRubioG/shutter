@@ -18,7 +18,7 @@ const FeaturedSection = (props: FeaturedSectionProps) => {
   } = props;
   return (
     <section className={`featured-section ${wrapperClassName || ""}`}>
-      <div className={`featured-section__content-wrapper`}>
+      {/* <div className={`featured-section__content-wrapper`}>
         <div className="featured-section__header-wrapper">
           <h2>Featured Works</h2>
           <p>Click on any project to view</p>
@@ -40,7 +40,7 @@ const FeaturedSection = (props: FeaturedSectionProps) => {
         <div className="featured-section__footer">
           <button>See all</button>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 };
