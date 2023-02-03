@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Nav from "../components/Nav/Nav";
 import ContactSection from "../components/ContactSection/ContactSection";
 import Footer from "../components/Footer/Footer";
 const ContactPage = () => {
-  document.body.style.overflow = "auto";
+  useEffect(() => {
+    document.body.style.overflow = "auto";
+  }, []);
   return (
     <main
       style={{
