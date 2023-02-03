@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // Components
 import Nav from "../components/Nav/Nav";
@@ -30,6 +30,9 @@ interface AboutPageProps {
 }
 
 const AboutPage = (props: AboutPageProps) => {
+  useEffect(() => {
+    document.body.style.overflow = "auto";
+  }, []);
   const teamMembers: TeamMember[] = props.data.allContentfulTeamMember.nodes;
 
   const teamElements: JSX.Element[] = teamMembers
