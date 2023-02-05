@@ -8,21 +8,25 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  align-items: flex-end;
+  align-items: center;
 
   padding: 1rem;
   @include m.lg {
     padding: 3rem;
+    justify-content: flex-end;
+    align-items: flex-end;
   }
   &__content {
     font-size: 18px;
     width: 100%;
     max-width: 400px;
     color: c.$ss-white;
+    margin-bottom: 6rem;
     @include m.lg {
       font-size: 5vw;
       width: 100%;
       max-width: 33%;
+      margin-bottom: 0rem;
     }
   }
   &__title {

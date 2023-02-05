@@ -24,6 +24,7 @@ import Effect from "../Effect/Effect";
 import FeaturedSection from "../FeaturedSection/FeaturedSection";
 import Lighting from "../Lighting/Lighting";
 import Scene from "../Scene/Scene";
+import useBreakpoint from "../../../hooks/useBreakpoint";
 
 interface ClickCanvasProps {
   sceneId: number;
@@ -42,12 +43,28 @@ const cameraPositions: CameraPositionByScene[] = [
   { position: new Vector3(44, 7, 2) },
 ];
 
+const TVScenePositionsByBreakpoints: { [key: string]: Vector3 } = {
+  xxl: new Vector3(44, 7, 2),
+  xl: new Vector3(44, 7, 2),
+  lg: new Vector3(45, 7, 3),
+  md: new Vector3(46.5, 7, 3),
+  sm: new Vector3(49, 7, 3),
+  xs: new Vector3(50, 7, 3.5),
+};
+
 const ClickCanvas = (props: ClickCanvasProps) => {
   const { sceneId, handleSceneChange } = props;
   const allProjectsData: SSProject[] = useContext(ProjectDataContext);
   const [activeProject, setActiveProject] = useState<SSProject>(
     allProjectsData.find((project) => project.isDemoReel) || allProjectsData[0]
   );
+  const currBreakpoint = useBreakpoint();
+
+  useEffect(() => {
+    cameraPositions[2] = {
+      position: TVScenePositionsByBreakpoints[currBreakpoint],
+    };
+  }, [currBreakpoint]);
 
   useEffect(() => {
     // Sort the projects by updated time
