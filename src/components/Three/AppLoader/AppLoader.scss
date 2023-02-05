@@ -1,0 +1,52 @@
+@use "../../../styles/colors" as c;
+.app-loader {
+  background-color: c.$ss-orange;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-height: 100vh;
+
+  &__bar {
+    height: 7rem;
+    position: relative;
+    border: 3px solid c.$ss-black;
+    background-color: transparent;
+  }
+
+  &__loaded {
+    background-color: c.$ss-black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    transform-origin: left;
+    transform: scaleX(0.75);
+    z-index: 1;
+  }
+
+  &__txt {
+    z-index: 2;
+  }
+
+  &__content {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  &__txt {
+    font-size: 36px;
+  }
+
+  &__number {
+    margin-top: auto;
+    font-size: 20vw;
+    font-family: "QuincyCF-Medium";
+    color: c.$ss-black;
+    line-height: 60%;
+  }
+}

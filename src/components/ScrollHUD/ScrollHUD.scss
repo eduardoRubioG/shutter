@@ -1,7 +1,13 @@
+@use "../../styles/media-queries" as m;
 .scroll-hud {
   position: absolute;
-  left: 3rem;
-  top: 92vh;
+  left: 2.7rem;
+  top: 35vh;
+
+  @include m.md {
+    left: 3rem;
+    top: 92vh;
+  }
 
   width: 2px;
   height: 20vh;

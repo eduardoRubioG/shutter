@@ -1,8 +1,9 @@
 import { OrbitControls, useContextBridge } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { FeatureVideoContext } from "../../AppContext/AppContext";
 import ScrollHUD from "../../ScrollHUD/ScrollHUD";
+import AppLoader from "../AppLoader/AppLoader";
 import ClickCanvas from "../ClickCanvas/ClickCanvas";
 
 interface ClickCanvasWrapperProps {}
@@ -35,14 +36,15 @@ const ClickCanvasWrapper = (props: ClickCanvasWrapperProps) => {
           }}
         >
           <OrbitControls enableZoom={false} enableRotate={false} />
-          {/* <OrbitControls /> */}
           <color attach="background" args={["#101115"]} />
-          <ContextBridge>
-            <ClickCanvas
-              sceneId={sceneId}
-              handleSceneChange={handleSceneIdChange}
-            />
-          </ContextBridge>
+          <Suspense fallback={<AppLoader />}>
+            <ContextBridge>
+              <ClickCanvas
+                sceneId={sceneId}
+                handleSceneChange={handleSceneIdChange}
+              />
+            </ContextBridge>
+          </Suspense>
         </Canvas>
       </div>
       <ScrollHUD sceneId={sceneId} />

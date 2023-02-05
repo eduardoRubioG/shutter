@@ -10,7 +10,7 @@ const HomeHtml = () => {
           src="/images/logo-vert-white.svg"
           alt="Primary logo"
         ></img>
-        <p className="hero-html__sub">The story told</p>
+        <p className="hero-html__sub">The Story Told</p>
       </div>
     </div>
   );

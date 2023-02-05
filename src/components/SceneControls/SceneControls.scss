@@ -1,4 +1,5 @@
 @use "../../styles/colors" as c;
+@use "../../styles/media-queries" as m;
 .scene-controls {
   position: absolute;
   width: 100%;
@@ -10,27 +11,48 @@
   align-items: center;
   justify-content: center;
 
+  @include m.sm {
+    align-items: center;
+    justify-content: center;
+  }
+
   & span {
     font-size: 14px;
     color: rgba(white, 0.6);
     animation: fadeInOut 3s infinite;
+
+    padding-left: 15px;
+
+    @include m.sm {
+      padding-left: none;
+    }
   }
 
   &__btn-wrapper {
     display: flex;
     flex-direction: row;
+    width: 100%;
+    @include m.sm {
+      width: auto;
+    }
     & button {
       padding: 10px 36px;
-      margin: 10px;
+      margin: 5px;
       color: c.$ss-white;
       border: 2px solid c.$ss-white;
       border-radius: 3px;
+      width: 100%;
       cursor: pointer;
 
       &:disabled {
         opacity: 0.5;
         cursor: not-allowed;
         pointer-events: none;
+      }
+
+      @include m.sm {
+        width: auto;
+        margin: 10px;
       }
     }
   }
