@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import Nav from "../components/Nav/Nav";
 import Footer from "../components/Footer/Footer";
 import TeamMember from "../components/TeamMember/TeamMember";
+import SEO from "../components/SEO/SEO";
 
 // Styles
 import "../pageStyles/about.scss";
@@ -79,6 +80,14 @@ const AboutPage = (props: AboutPageProps) => {
 };
 
 export default AboutPage;
+export function Head() {
+  return (
+    <>
+      <html lang="en" />
+      <SEO />
+    </>
+  );
+}
 export const pageQuery = graphql`
   query MemberData {
     allContentfulTeamMember {
