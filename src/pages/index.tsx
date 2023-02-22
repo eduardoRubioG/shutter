@@ -10,6 +10,7 @@ import ContactSection from "../components/ContactSection/ContactSection";
 import Footer from "../components/Footer/Footer";
 import ClickCanvasWrapper from "../components/Three/ClickCanvasWrapper/ClickCanvasWrapper";
 import { ProjectDataFromQuery } from "../types";
+import SEO from "../components/SEO/SEO";
 
 const App = (props: ProjectDataFromQuery) => {
   useEffect(() => {
@@ -35,6 +36,14 @@ const App = (props: ProjectDataFromQuery) => {
 };
 
 export default App;
+export function Head() {
+  return (
+    <>
+      <html lang="en" />
+      <SEO />
+    </>
+  );
+}
 
 export const pageQuery = graphql`
   query PortfolioQuery {

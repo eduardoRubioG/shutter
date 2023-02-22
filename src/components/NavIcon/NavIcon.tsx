@@ -17,6 +17,7 @@ const NavIcon = (props: NavIconProps) => {
     <button
       className={`nav-icon ${isOpen ? "nav-active" : ""}`}
       onClick={menuClicked}
+      aria-label="Nav Button"
     >
       <span className="nav-icon__line left"></span>
       <span className="nav-icon__line "></span>

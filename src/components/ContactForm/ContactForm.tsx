@@ -111,29 +111,32 @@ const ContactForm = (props: ContactFormProps) => {
         <input type="hidden" name="form-name" value={formName}></input>
 
         <div className="contact-form__input-wrapper">
-          <label>Name:</label>
+          <label htmlFor="name">Name:</label>
           <input
             onChange={handleChange}
             className="contact-form__input"
             type="text"
             name="name"
+            id="name"
           />
         </div>
         <div className="contact-form__input-wrapper">
-          <label>Email:</label>
+          <label htmlFor="email">Email:</label>
           <input
             onChange={handleChange}
             className="contact-form__input"
             type="email"
             name="email"
+            id="email"
           />
         </div>
         <div className="contact-form__input-wrapper">
-          <label>How can we tell your story?</label>
+          <label htmlFor="message">How can we tell your story?</label>
           <textarea
             onChange={handleChange}
             className="contact-form__input"
             name="message"
+            id="message"
           />
         </div>
         <button
