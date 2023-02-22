@@ -26,7 +26,7 @@ const ClickCanvasWrapper = (props: ClickCanvasWrapperProps) => {
   const ContextBridge = useContextBridge(FeatureVideoContext);
   return (
     <>
-      <div style={{ height: "100vh" }}>
+      <div style={{ height: "100vh" }} className="full-height-svh">
         <Canvas
           camera={{
             fov: 45,

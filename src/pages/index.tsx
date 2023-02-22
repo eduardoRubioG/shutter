@@ -9,7 +9,6 @@ import Nav from "../components/Nav/Nav";
 import ContactSection from "../components/ContactSection/ContactSection";
 import Footer from "../components/Footer/Footer";
 import ClickCanvasWrapper from "../components/Three/ClickCanvasWrapper/ClickCanvasWrapper";
-import SplashCanvasWrapper from "../components/Three/SplashCanvasWrapper/SplashCanvasWrapper";
 import { ProjectDataFromQuery } from "../types";
 
 const App = (props: ProjectDataFromQuery) => {
@@ -26,7 +25,6 @@ const App = (props: ProjectDataFromQuery) => {
       <ProjectDataContext.Provider
         value={props.data.allContentfulProject.nodes}
       >
-        {/* <SplashCanvasWrapper /> */}
         <ClickCanvasWrapper />
       </ProjectDataContext.Provider>
 
